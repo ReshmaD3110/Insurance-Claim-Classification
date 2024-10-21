@@ -1,324 +1,69 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "c4f8bb29-7906-4907-986d-3ba1a25d34e3",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Collecting streamlit\n",
-      "  Obtaining dependency information for streamlit from https://files.pythonhosted.org/packages/ef/e1/f9c479f9dbe0bb702ea5ca6608f10e91a708b438f7fb4572a2642718c6e3/streamlit-1.39.0-py2.py3-none-any.whl.metadata\n",
-      "  Downloading streamlit-1.39.0-py2.py3-none-any.whl.metadata (8.5 kB)\n",
-      "Requirement already satisfied: pandas in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (2.0.3)\n",
-      "Requirement already satisfied: scikit-learn in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (1.2.2)\n",
-      "Requirement already satisfied: xgboost in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (0.90)\n",
-      "Requirement already satisfied: imbalanced-learn in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (0.10.1)\n",
-      "Collecting altair<6,>=4.0 (from streamlit)\n",
-      "  Obtaining dependency information for altair<6,>=4.0 from https://files.pythonhosted.org/packages/9b/52/4a86a4fa1cc2aae79137cc9510b7080c3e5aede2310d14fae5486feec7f7/altair-5.4.1-py3-none-any.whl.metadata\n",
-      "  Downloading altair-5.4.1-py3-none-any.whl.metadata (9.4 kB)\n",
-      "Collecting blinker<2,>=1.0.0 (from streamlit)\n",
-      "  Obtaining dependency information for blinker<2,>=1.0.0 from https://files.pythonhosted.org/packages/bb/2a/10164ed1f31196a2f7f3799368a821765c62851ead0e630ab52b8e14b4d0/blinker-1.8.2-py3-none-any.whl.metadata\n",
-      "  Downloading blinker-1.8.2-py3-none-any.whl.metadata (1.6 kB)\n",
-      "Collecting cachetools<6,>=4.0 (from streamlit)\n",
-      "  Obtaining dependency information for cachetools<6,>=4.0 from https://files.pythonhosted.org/packages/a4/07/14f8ad37f2d12a5ce41206c21820d8cb6561b728e51fad4530dff0552a67/cachetools-5.5.0-py3-none-any.whl.metadata\n",
-      "  Downloading cachetools-5.5.0-py3-none-any.whl.metadata (5.3 kB)\n",
-      "Requirement already satisfied: click<9,>=7.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (8.0.4)\n",
-      "Requirement already satisfied: numpy<3,>=1.20 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (1.24.3)\n",
-      "Requirement already satisfied: packaging<25,>=20 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (23.1)\n",
-      "Requirement already satisfied: pillow<11,>=7.1.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (10.0.1)\n",
-      "Requirement already satisfied: protobuf<6,>=3.20 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (4.25.3)\n",
-      "Requirement already satisfied: pyarrow>=7.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (11.0.0)\n",
-      "Requirement already satisfied: requests<3,>=2.27 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (2.31.0)\n",
-      "Requirement already satisfied: rich<14,>=10.14.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (13.7.1)\n",
-      "Requirement already satisfied: tenacity<10,>=8.1.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (8.2.2)\n",
-      "Requirement already satisfied: toml<2,>=0.10.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (0.10.2)\n",
-      "Requirement already satisfied: typing-extensions<5,>=4.3.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (4.12.2)\n",
-      "Collecting gitpython!=3.1.19,<4,>=3.0.7 (from streamlit)\n",
-      "  Obtaining dependency information for gitpython!=3.1.19,<4,>=3.0.7 from https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl.metadata\n",
-      "  Downloading GitPython-3.1.43-py3-none-any.whl.metadata (13 kB)\n",
-      "Collecting pydeck<1,>=0.8.0b4 (from streamlit)\n",
-      "  Obtaining dependency information for pydeck<1,>=0.8.0b4 from https://files.pythonhosted.org/packages/ab/4c/b888e6cf58bd9db9c93f40d1c6be8283ff49d88919231afe93a6bcf61626/pydeck-0.9.1-py2.py3-none-any.whl.metadata\n",
-      "  Downloading pydeck-0.9.1-py2.py3-none-any.whl.metadata (4.1 kB)\n",
-      "Requirement already satisfied: tornado<7,>=6.0.3 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (6.3.2)\n",
-      "Requirement already satisfied: watchdog<6,>=2.1.5 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from streamlit) (2.1.6)\n",
-      "Requirement already satisfied: python-dateutil>=2.8.2 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from pandas) (2.8.2)\n",
-      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from pandas) (2023.3.post1)\n",
-      "Requirement already satisfied: tzdata>=2022.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from pandas) (2023.3)\n",
-      "Requirement already satisfied: scipy>=1.3.2 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from scikit-learn) (1.11.1)\n",
-      "Requirement already satisfied: joblib>=1.1.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from scikit-learn) (1.2.0)\n",
-      "Requirement already satisfied: threadpoolctl>=2.0.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from scikit-learn) (2.2.0)\n",
-      "Requirement already satisfied: jinja2 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from altair<6,>=4.0->streamlit) (3.1.2)\n",
-      "Requirement already satisfied: jsonschema>=3.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from altair<6,>=4.0->streamlit) (4.19.2)\n",
-      "Collecting narwhals>=1.5.2 (from altair<6,>=4.0->streamlit)\n",
-      "  Obtaining dependency information for narwhals>=1.5.2 from https://files.pythonhosted.org/packages/82/45/6bb08a5e5ac2d9a95f4116567d0aafb1e5f86c4bbcf982e209e5ae872b3d/narwhals-1.10.0-py3-none-any.whl.metadata\n",
-      "  Downloading narwhals-1.10.0-py3-none-any.whl.metadata (7.0 kB)\n",
-      "Requirement already satisfied: colorama in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from click<9,>=7.0->streamlit) (0.4.6)\n",
-      "Collecting gitdb<5,>=4.0.1 (from gitpython!=3.1.19,<4,>=3.0.7->streamlit)\n",
-      "  Obtaining dependency information for gitdb<5,>=4.0.1 from https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl.metadata\n",
-      "  Downloading gitdb-4.0.11-py3-none-any.whl.metadata (1.2 kB)\n",
-      "Requirement already satisfied: six>=1.5 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from python-dateutil>=2.8.2->pandas) (1.16.0)\n",
-      "Requirement already satisfied: charset-normalizer<4,>=2 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2.0.4)\n",
-      "Requirement already satisfied: idna<4,>=2.5 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from requests<3,>=2.27->streamlit) (3.4)\n",
-      "Requirement already satisfied: urllib3<3,>=1.21.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from requests<3,>=2.27->streamlit) (1.26.16)\n",
-      "Requirement already satisfied: certifi>=2017.4.17 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2024.7.4)\n",
-      "Requirement already satisfied: markdown-it-py>=2.2.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from rich<14,>=10.14.0->streamlit) (2.2.0)\n",
-      "Requirement already satisfied: pygments<3.0.0,>=2.13.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from rich<14,>=10.14.0->streamlit) (2.15.1)\n",
-      "Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->gitpython!=3.1.19,<4,>=3.0.7->streamlit)\n",
-      "  Obtaining dependency information for smmap<6,>=3.0.1 from https://files.pythonhosted.org/packages/a7/a5/10f97f73544edcdef54409f1d839f6049a0d79df68adbc1ceb24d1aaca42/smmap-5.0.1-py3-none-any.whl.metadata\n",
-      "  Downloading smmap-5.0.1-py3-none-any.whl.metadata (4.3 kB)\n",
-      "Requirement already satisfied: MarkupSafe>=2.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from jinja2->altair<6,>=4.0->streamlit) (2.1.1)\n",
-      "Requirement already satisfied: attrs>=22.2.0 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (23.1.0)\n",
-      "Requirement already satisfied: jsonschema-specifications>=2023.03.6 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (2023.7.1)\n",
-      "Requirement already satisfied: referencing>=0.28.4 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (0.30.2)\n",
-      "Requirement already satisfied: rpds-py>=0.7.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (0.10.6)\n",
-      "Requirement already satisfied: mdurl~=0.1 in c:\\users\\prasi\\new_anaconda\\lib\\site-packages (from markdown-it-py>=2.2.0->rich<14,>=10.14.0->streamlit) (0.1.0)\n",
-      "Downloading streamlit-1.39.0-py2.py3-none-any.whl (8.7 MB)\n",
-      "   ---------------------------------------- 0.0/8.7 MB ? eta -:--:--\n",
-      "   - -------------------------------------- 0.3/8.7 MB 7.7 MB/s eta 0:00:02\n",
-      "   - -------------------------------------- 0.4/8.7 MB 6.0 MB/s eta 0:00:02\n",
-      "   -- ------------------------------------- 0.6/8.7 MB 5.1 MB/s eta 0:00:02\n",
-      "   ---- ----------------------------------- 1.0/8.7 MB 5.1 MB/s eta 0:00:02\n",
-      "   ----- ---------------------------------- 1.2/8.7 MB 5.4 MB/s eta 0:00:02\n",
-      "   ------ --------------------------------- 1.5/8.7 MB 5.4 MB/s eta 0:00:02\n",
-      "   ------- -------------------------------- 1.7/8.7 MB 5.4 MB/s eta 0:00:02\n",
-      "   --------- ------------------------------ 2.0/8.7 MB 5.5 MB/s eta 0:00:02\n",
-      "   ---------- ----------------------------- 2.2/8.7 MB 5.7 MB/s eta 0:00:02\n",
-      "   ----------- ---------------------------- 2.5/8.7 MB 5.7 MB/s eta 0:00:02\n",
-      "   ------------ --------------------------- 2.7/8.7 MB 5.7 MB/s eta 0:00:02\n",
-      "   ------------- -------------------------- 3.0/8.7 MB 5.8 MB/s eta 0:00:01\n",
-      "   -------------- ------------------------- 3.2/8.7 MB 5.7 MB/s eta 0:00:01\n",
-      "   --------------- ------------------------ 3.3/8.7 MB 5.7 MB/s eta 0:00:01\n",
-      "   ----------------- ---------------------- 3.8/8.7 MB 5.7 MB/s eta 0:00:01\n",
-      "   ------------------ --------------------- 4.1/8.7 MB 5.8 MB/s eta 0:00:01\n",
-      "   -------------------- ------------------- 4.4/8.7 MB 5.9 MB/s eta 0:00:01\n",
-      "   --------------------- ------------------ 4.8/8.7 MB 6.0 MB/s eta 0:00:01\n",
-      "   ----------------------- ---------------- 5.1/8.7 MB 6.0 MB/s eta 0:00:01\n",
-      "   ------------------------ --------------- 5.4/8.7 MB 6.1 MB/s eta 0:00:01\n",
-      "   ------------------------- -------------- 5.6/8.7 MB 6.1 MB/s eta 0:00:01\n",
-      "   --------------------------- ------------ 5.9/8.7 MB 6.1 MB/s eta 0:00:01\n",
-      "   ----------------------------- ---------- 6.3/8.7 MB 6.0 MB/s eta 0:00:01\n",
-      "   ------------------------------ --------- 6.7/8.7 MB 6.1 MB/s eta 0:00:01\n",
-      "   -------------------------------- ------- 7.2/8.7 MB 6.2 MB/s eta 0:00:01\n",
-      "   ---------------------------------- ----- 7.6/8.7 MB 6.2 MB/s eta 0:00:01\n",
-      "   ------------------------------------ --- 7.9/8.7 MB 6.2 MB/s eta 0:00:01\n",
-      "   ------------------------------------- -- 8.3/8.7 MB 6.2 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.6/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  8.7/8.7 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 8.7/8.7 MB 5.2 MB/s eta 0:00:00\n",
-      "Downloading altair-5.4.1-py3-none-any.whl (658 kB)\n",
-      "   ---------------------------------------- 0.0/658.1 kB ? eta -:--:--\n",
-      "   ---------------- ----------------------- 266.2/658.1 kB 8.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  655.4/658.1 kB 8.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 658.1/658.1 kB 4.2 MB/s eta 0:00:00\n",
-      "Downloading blinker-1.8.2-py3-none-any.whl (9.5 kB)\n",
-      "Downloading cachetools-5.5.0-py3-none-any.whl (9.5 kB)\n",
-      "Downloading GitPython-3.1.43-py3-none-any.whl (207 kB)\n",
-      "   ---------------------------------------- 0.0/207.3 kB ? eta -:--:--\n",
-      "   --------------------------------------  204.8/207.3 kB 13.0 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 207.3/207.3 kB 2.5 MB/s eta 0:00:00\n",
-      "Downloading pydeck-0.9.1-py2.py3-none-any.whl (6.9 MB)\n",
-      "   ---------------------------------------- 0.0/6.9 MB ? eta -:--:--\n",
-      "   -- ------------------------------------- 0.4/6.9 MB 11.2 MB/s eta 0:00:01\n",
-      "   --- ------------------------------------ 0.7/6.9 MB 8.3 MB/s eta 0:00:01\n",
-      "   ----- ---------------------------------- 1.0/6.9 MB 7.6 MB/s eta 0:00:01\n",
-      "   ------- -------------------------------- 1.3/6.9 MB 7.6 MB/s eta 0:00:01\n",
-      "   --------- ------------------------------ 1.6/6.9 MB 7.3 MB/s eta 0:00:01\n",
-      "   ---------- ----------------------------- 1.9/6.9 MB 7.5 MB/s eta 0:00:01\n",
-      "   ------------ --------------------------- 2.1/6.9 MB 7.2 MB/s eta 0:00:01\n",
-      "   ------------- -------------------------- 2.4/6.9 MB 7.0 MB/s eta 0:00:01\n",
-      "   --------------- ------------------------ 2.6/6.9 MB 7.0 MB/s eta 0:00:01\n",
-      "   ---------------- ----------------------- 2.8/6.9 MB 6.6 MB/s eta 0:00:01\n",
-      "   ------------------ --------------------- 3.2/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   ------------------- -------------------- 3.4/6.9 MB 6.6 MB/s eta 0:00:01\n",
-      "   --------------------- ------------------ 3.7/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ----------------------- ---------------- 4.0/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   ------------------------ --------------- 4.2/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   -------------------------- ------------- 4.6/6.9 MB 6.6 MB/s eta 0:00:01\n",
-      "   ---------------------------- ----------- 5.0/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   ------------------------------ --------- 5.3/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   -------------------------------- ------- 5.7/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   ---------------------------------- ----- 6.0/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   ------------------------------------ --- 6.3/6.9 MB 6.7 MB/s eta 0:00:01\n",
-      "   -------------------------------------- - 6.7/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  6.9/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  6.9/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  6.9/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  6.9/6.9 MB 6.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 6.9/6.9 MB 5.7 MB/s eta 0:00:00\n",
-      "Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)\n",
-      "   ---------------------------------------- 0.0/62.7 kB ? eta -:--:--\n",
-      "   ---------------------------------------  61.4/62.7 kB ? eta -:--:--\n",
-      "   ---------------------------------------- 62.7/62.7 kB 846.5 kB/s eta 0:00:00\n",
-      "Downloading narwhals-1.10.0-py3-none-any.whl (193 kB)\n",
-      "   ---------------------------------------- 0.0/193.6 kB ? eta -:--:--\n",
-      "   -------------------------------------- - 184.3/193.6 kB 3.8 MB/s eta 0:00:01\n",
-      "   -------------------------------------- - 184.3/193.6 kB 3.8 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 193.6/193.6 kB 1.5 MB/s eta 0:00:00\n",
-      "Downloading smmap-5.0.1-py3-none-any.whl (24 kB)\n",
-      "Installing collected packages: smmap, narwhals, cachetools, blinker, pydeck, gitdb, gitpython, altair, streamlit\n",
-      "Successfully installed altair-5.4.1 blinker-1.8.2 cachetools-5.5.0 gitdb-4.0.11 gitpython-3.1.43 narwhals-1.10.0 pydeck-0.9.1 smmap-5.0.1 streamlit-1.39.0\n",
-      "Note: you may need to restart the kernel to use updated packages.\n"
-     ]
+import streamlit as st
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+from sklearn.metrics import precision_score, recall_score
+from imblearn.over_sampling import SMOTE
+
+# Function to run the model
+def run_model(data, model_name):
+    X = data.drop(columns=['coverage_code_encoded'])
+    y = data['coverage_code_encoded']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=10)
+
+    smote = SMOTE(random_state=42)
+    X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)
+
+    if model_name == "Random Forest":
+        model = RandomForestClassifier(random_state=10)
+    else:
+        model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss', random_state=10)
+
+    model.fit(X_train_balanced, y_train_balanced)
+    y_pred_train = model.predict(X_train)
+    y_pred_test = model.predict(X_test)
+
+    results = {
+        'train_precision': precision_score(y_train, y_pred_train, average='weighted'),
+        'train_recall': recall_score(y_train, y_pred_train, average='weighted'),
+        'test_precision': precision_score(y_test, y_pred_test, average='weighted'),
+        'test_recall': recall_score(y_test, y_pred_test, average='weighted')
     }
-   ],
-   "source": [
-    "pip install streamlit pandas scikit-learn xgboost imbalanced-learn"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "id": "a0469613-356b-41e8-8c1c-a6da4ede3cfa",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import matplotlib.pyplot as plt"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 5,
-   "id": "a0015184-eec4-42fe-b545-139fe96e032b",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "2024-10-21 15:02:28.649 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 \n",
-      "  \u001b[33m\u001b[1mWarning:\u001b[0m to view this Streamlit app on a browser, run it with the following\n",
-      "  command:\n",
-      "\n",
-      "    streamlit run C:\\Users\\Prasi\\New_Anaconda\\Lib\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Session state does not function when running a script without `streamlit run`\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2024-10-21 15:02:31.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n"
-     ]
-    }
-   ],
-   "source": [
-    "import streamlit as st\n",
-    "import pandas as pd\n",
-    "from sklearn.model_selection import train_test_split\n",
-    "from sklearn.ensemble import RandomForestClassifier\n",
-    "from xgboost import XGBClassifier\n",
-    "from sklearn.metrics import precision_score, recall_score\n",
-    "from imblearn.over_sampling import SMOTE\n",
-    "\n",
-    "# Function to run the model\n",
-    "def run_model(data, model_name):\n",
-    "    X = data.drop(columns=['coverage_code_encoded'])\n",
-    "    y = data['coverage_code_encoded']\n",
-    "    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=10)\n",
-    "\n",
-    "    smote = SMOTE(random_state=42)\n",
-    "    X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)\n",
-    "\n",
-    "    if model_name == \"Random Forest\":\n",
-    "        model = RandomForestClassifier(random_state=10)\n",
-    "    else:\n",
-    "        model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss', random_state=10)\n",
-    "\n",
-    "    model.fit(X_train_balanced, y_train_balanced)\n",
-    "    y_pred_train = model.predict(X_train)\n",
-    "    y_pred_test = model.predict(X_test)\n",
-    "\n",
-    "    results = {\n",
-    "        'train_precision': precision_score(y_train, y_pred_train, average='weighted'),\n",
-    "        'train_recall': recall_score(y_train, y_pred_train, average='weighted'),\n",
-    "        'test_precision': precision_score(y_test, y_pred_test, average='weighted'),\n",
-    "        'test_recall': recall_score(y_test, y_pred_test, average='weighted')\n",
-    "    }\n",
-    "    return results\n",
-    "\n",
-    "# Streamlit application\n",
-    "st.title(\"Model Runner\")\n",
-    "\n",
-    "# File upload\n",
-    "uploaded_file = st.file_uploader(\"Choose an Excel file\", type=[\"xlsx\"])\n",
-    "\n",
-    "# Model selection\n",
-    "model_name = st.selectbox(\"Choose the model to run\", (\"Random Forest\", \"XGBoost\"))\n",
-    "\n",
-    "if uploaded_file is not None:\n",
-    "    data = pd.read_excel(uploaded_file)\n",
-    "\n",
-    "    # Run the model and display results\n",
-    "    if st.button(\"Run Model\"):\n",
-    "        results = run_model(data, model_name)\n",
-    "        st.success(\"Model run successfully!\")\n",
-    "\n",
-    "        # Display results\n",
-    "        st.write(\"### Results:\")\n",
-    "        st.write(f\"Train Precision: {results['train_precision']:.4f}\")\n",
-    "        st.write(f\"Train Recall: {results['train_recall']:.4f}\")\n",
-    "        st.write(f\"Test Precision: {results['test_precision']:.4f}\")\n",
-    "        st.write(f\"Test Recall: {results['test_recall']:.4f}\")\n",
-    "\n",
-    "        # Optionally, save the results to Excel\n",
-    "        if st.button(\"Save Results to Excel\"):\n",
-    "            results_df = pd.DataFrame([results])\n",
-    "            results_df.to_excel(\"model_results.xlsx\", index=False)\n",
-    "            st.success(\"Results saved to 'model_results.xlsx'\")\n",
-    "\n",
-    "# Run the app\n",
-    "if __name__ == \"__main__\":\n",
-    "    st.write(\"Upload a dataset to get started!\")"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "a2f4ef58-a84b-411f-a7ee-d5ecc56b005c",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.11.5"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+    return results
+
+# Streamlit application
+st.title("Model Runner")
+
+# File upload
+uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"])
+
+# Model selection
+model_name = st.selectbox("Choose the model to run", ("Random Forest", "XGBoost"))
+
+if uploaded_file is not None:
+    data = pd.read_excel(uploaded_file)
+
+    # Run the model and display results
+    if st.button("Run Model"):
+        results = run_model(data, model_name)
+        st.success("Model run successfully!")
+
+        # Display results
+        st.write("### Results:")
+        st.write(f"Train Precision: {results['train_precision']:.4f}")
+        st.write(f"Train Recall: {results['train_recall']:.4f}")
+        st.write(f"Test Precision: {results['test_precision']:.4f}")
+        st.write(f"Test Recall: {results['test_recall']:.4f}")
+
+        # Optionally, save the results to Excel
+        if st.button("Save Results to Excel"):
+            results_df = pd.DataFrame([results])
+            results_df.to_excel("model_results.xlsx", index=False)
+            st.success("Results saved to 'model_results.xlsx'")
+
+# Run the app
+if __name__ == "__main__":
+    st.write("Upload a dataset to get started!")
+
+
